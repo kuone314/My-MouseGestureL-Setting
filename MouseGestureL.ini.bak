@@ -1,0 +1,197 @@
+﻿[Settings]
+IniFileVersion=1.31
+8Dir=0
+ActiveAsTarget=0
+Interval=20
+Threshold=30
+LongThresholdX=800
+LongThresholdY=600
+LongThreshold=700
+TimeoutThreshold=12
+Timeout=400
+DGInterval=100
+ORangeDefault=3
+ORangeA=3
+ORangeB=3
+EdgeInterval=20
+EdgeIndiv=0
+CornerX=1
+CornerY=1
+DisableDefMB=0
+DisableDefX1B=0
+DisableDefX2B=0
+UseNavi=1
+UseExNavi=3
+NaviInterval=10
+NaviPersist=0
+ExNaviTransBG=1
+ExNaviFG=000000
+ExNaviBG=FFFFFF
+ExNaviTranspcy=255
+ExNaviSize=24
+ExNaviSpacing=2
+ExNaviPadding=4
+ExNaviMargin=8
+AdNaviFG=FFFFFF
+AdNaviNI=7F7F7F
+AdNaviBG=000000
+AdNaviTranspcy=220
+AdNaviSize=12
+AdNaviFont=Meiryo
+AdNaviPosition=0
+AdNaviPaddingL=6
+AdNaviPaddingR=6
+AdNaviPaddingT=3
+AdNaviPaddingB=4
+AdNaviRound=1
+AdNaviMargin=14
+AdNaviSpaceX=2
+AdNaviSpaceY=2
+AdNaviOnClick=0
+ShowTrail=1
+DrawTrailWnd=1
+TrailColor=0000FF
+TrailTranspcy=255
+TrailWidth=3
+TrailStartMove=3
+TrailInterval=10
+ShowLogs=0
+LogPosition=4
+LogPosX=0
+LogPosY=0
+LogMax=20
+LogSizeW=400
+LogInterval=500
+LogFG=FFFFFF
+LogBG=000000
+LogTranspcy=100
+LogFontSize=10
+LogFont=MS UI Gothic
+HotkeyEnable=
+HotkeyNavi=
+ScriptEditor=
+TraySubmenu=0
+AdjustDlg=0
+DlgHeightLimit=800
+EditCommand=
+FoldTarget=0
+
+[Disable]
+And=1
+WClass=Dialog
+
+[Text]
+WClass=TextEditorWindow
+Include=VisualStudio
+WClass=WinMergeWindowClassW
+WClass=PX_WINDOW_CLASS
+WClass=Basilica Tracer
+
+[VisualStudio]
+Title_B=- Microsoft Visual Studio
+Exe=devenv.exe
+
+[UnUseGesture]
+And=1
+Include_N=Text
+
+[NotePad]
+WClass=Notepad
+
+[spFrame]
+CClass=AX_VIEW_CLASS
+WClass=AxspGateClassName
+WClass=AxCAxSampleAplClassName
+WClass=AxspGaugeClassName
+WClass=AxspFrameClassName
+WClass=HwndWrapper[PRLSModeler.exe;;1a09815b-6362-49c3-a35c-57276c4e4bfa]
+WClass=AxspGate-ViewerClassName
+
+[Not_spFrame]
+Include_N=spFrame
+Title=CyclonJoker
+
+[Sublime]
+WClass=PX_WINDOW_CLASS
+
+[JT2Go]
+WClass=Afx:00400000:8:00010007:00000000:41451959
+Title_T=JT2Go
+
+[Enter]
+G=RB_D_
+Text=;キー操作を発生させる<MG_CR>Send, {Enter}
+
+[BS]
+G=RB_LD_
+Text=;キー操作を発生させる<MG_CR>Send, {Backspace}
+
+[Run]
+G=RB_UD_
+VisualStudio=;キー操作を発生させる<MG_CR>Send, {F5}
+
+[Compile]
+G=RB_U_
+VisualStudio=;キー操作を発生させる<MG_CR>Send, {F6}<MG_CR>	;キー操作を発生させる<MG_CR>Send, ^{F7}
+Text=;キー操作を発生させる<MG_CR>Send, ^s
+
+[IgnoreStork]
+G=RB_
+UnUseGesture=MG_Abort()
+
+[CommentOut]
+G=RB_R_
+VisualStudio=;キー操作を発生させる<MG_CR>Send, +^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^c
+Sublime=;キー操作を発生させる<MG_CR>Send, ^/
+
+[UnCommentOut]
+G=RB_L_
+VisualStudio=;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^u
+Sublime=;キー操作を発生させる<MG_CR>Send, ^/
+
+[Format]
+G=RB_RL_
+Text=;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^f
+
+[Del]
+G=RB_RD_
+Text=;キー操作を発生させる<MG_CR>Send, {Delete}
+
+[F3]
+G=RB_WD_
+Text=;キー操作を発生させる<MG_CR>Send, ^{F3}
+
+[S_F3]
+G=RB_WU_
+Text=;キー操作を発生させる<MG_CR>Send, +^{F3}
+
+[Copy]
+G=X1B__
+Not_spFrame=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の動作 <MG_CR>Send, ^c<MG_CR>}else{<MG_CR>;長押し時の動作 <MG_CR>}<MG_CR>}
+
+[Cut]
+G=X1B_
+spFrame=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>;Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>;Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>  }
+Not_spFrame=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, ^x<MG_CR>MG_Abort()<MG_CR>}
+
+[Past]
+G=X2B__
+Not_spFrame=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の動作 <MG_CR>Send, ^v<MG_CR>}else{<MG_CR>;長押し時の動作 <MG_CR>}<MG_CR>}
+
+[CLCL]
+G=X2B_
+Not_spFrame=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, !c<MG_CR>MG_Abort()<MG_CR>}
+spFrame=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>  }
+JT2Go=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>MG_Send("LB", "D")<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>MG_Send("LB", "U")<MG_CR>  }
+
+[CancelShift]
+G=X2B_RB_
+G=X1B_RB_
+G=X2B_LB_
+G=RB_X1B_
+G=RB_X2B_
+spFrame=MG_Abort()
+
+[SelCentor]
+G=X1B_LB_
+spFrame=Send, {Shift Up}<MG_CR>;キー操作を発生させる<MG_CR>Send, !{LButton}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()
