@@ -301,7 +301,7 @@ MG_IsTarget2(){
 
 MG_IsTarget3(){
 	global
-	return (!(MG_IsTarget1()) || (MG_Title="CyclonJoker"))
+	return (!(MG_IsTarget1()))
 }
 
 MG_IsTarget4(){
@@ -642,13 +642,13 @@ MG_Gesture_X2B_:
 		 ;押したときの動作
 		Send, {Control Down}
 		Send, {Shift Down}
-		MG_Send("LB", "D")
+		;MG_Send("LB", "D")
 		;MG_Abort()
 		 }else{
 		  ;放したときの動作
 		Send, {Control Up}
 		Send, {Shift Up}
-		MG_Send("LB", "U")
+		;MG_Send("LB", "U")
 		  }
 	}else{
 		MG_Cancel()
