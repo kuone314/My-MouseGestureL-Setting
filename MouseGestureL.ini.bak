@@ -86,6 +86,7 @@ Include=VisualStudio
 WClass=WinMergeWindowClassW
 WClass=PX_WINDOW_CLASS
 WClass=Basilica Tracer
+Include=VSCode
 
 [VisualStudio]
 Title_B=- Microsoft Visual Studio
@@ -93,6 +94,9 @@ Exe=devenv.exe
 
 [Sublime]
 WClass=PX_WINDOW_CLASS
+
+[VSCode]
+Exe=Code.exe
 
 [Enter]
 G=RB_D_
