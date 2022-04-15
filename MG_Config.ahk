@@ -74,9 +74,9 @@ MG_AdjustDlg=0
 MG_DlgHeightLimit=800
 MG_EditCommand=
 MG_FoldTarget=0
-MG_MaxLength=7
+MG_MaxLength=6
 MG_Triggers=RB_X1B_X2B
-MG_SubTriggers=LB_WU_WD
+MG_SubTriggers=WU_WD
 
 
 Goto,MG_RB_End
@@ -196,43 +196,6 @@ MG_X2B_Check:
 return
 
 MG_X2B_End:
-
-
-Goto,MG_LB_End
-
-MG_LB_Enable:
-	Hotkey,*LButton,MG_LB_DownHotkey,On
-	Hotkey,*LButton up,MG_LB_UpHotkey,On
-	MG_LB_Enabled := 1
-return
-
-MG_LB_Disable:
-	Hotkey,*LButton,MG_LB_DownHotkey,Off
-	Hotkey,*LButton up,MG_LB_UpHotkey,Off
-	MG_LB_Enabled := 0
-return
-
-MG_LB_DownHotkey:
-	MG_TriggerDown("LB")
-return
-
-MG_LB_UpHotkey:
-	MG_TriggerUp("LB")
-return
-
-MG_LB_Down:
-	MG_SendButton("LB", "LButton", "Down")
-return
-
-MG_LB_Up:
-	MG_SendButton("LB", "LButton", "Up")
-return
-
-MG_LB_Check:
-	MG_CheckButton("LB", "LButton")
-return
-
-MG_LB_End:
 
 
 Goto,MG_WU_End
@@ -619,30 +582,6 @@ MG_GetAction_X2B_:
 	}else{
 		MG_ActionStr := ""
 	}
-return
-
-MG_Gesture_X2B_RB_:
-MG_Gesture_X1B_RB_:
-MG_Gesture_X2B_LB_:
-MG_Gesture_RB_X1B_:
-MG_Gesture_RB_X2B_:
-	
-return
-
-MG_GetAction_X2B_RB_:
-MG_GetAction_X1B_RB_:
-MG_GetAction_X2B_LB_:
-MG_GetAction_RB_X1B_:
-MG_GetAction_RB_X2B_:
-	
-return
-
-MG_Gesture_X1B_LB_:
-	
-return
-
-MG_GetAction_X1B_LB_:
-	
 return
 
 

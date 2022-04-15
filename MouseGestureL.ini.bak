@@ -86,6 +86,7 @@ Include=VisualStudio
 WClass=WinMergeWindowClassW
 WClass=PX_WINDOW_CLASS
 WClass=Basilica Tracer
+Include=VSCode
 
 [VisualStudio]
 Title_B=- Microsoft Visual Studio
@@ -103,6 +104,9 @@ Title=CyclonJoker
 
 [Sublime]
 WClass=PX_WINDOW_CLASS
+
+[VSCode]
+WClass=Chrome_WidgetWin_1
 
 [Enter]
 G=RB_D_
