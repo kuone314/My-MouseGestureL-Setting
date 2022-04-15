@@ -311,22 +311,12 @@ MG_IsTarget4(){
 
 MG_IsTarget5(){
 	global
-	return ((MG_CClass="AX_VIEW_CLASS") || (MG_WClass="AxspGateClassName") || (MG_WClass="AxCAxSampleAplClassName") || (MG_WClass="AxspGaugeClassName") || (MG_WClass="AxspFrameClassName") || (MG_WClass="HwndWrapper[PRLSModeler.exe;;1a09815b-6362-49c3-a35c-57276c4e4bfa]") || (MG_WClass="AxspGate-ViewerClassName"))
+	return ((MG_Title="CyclonJoker"))
 }
 
 MG_IsTarget6(){
 	global
-	return (!(MG_IsTarget5()) || (MG_Title="CyclonJoker"))
-}
-
-MG_IsTarget7(){
-	global
 	return ((MG_WClass="PX_WINDOW_CLASS"))
-}
-
-MG_IsTarget8(){
-	global
-	return ((MG_WClass="Afx:00400000:8:00010007:00000000:41451959") || (MG_StrComp(MG_Title, "JT2Go", 3)))
 }
 
 MG_Gesture_RB_D_:
@@ -428,7 +418,7 @@ MG_Gesture_RB_R_:
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^c
-	}else if(MG_IsTarget7()){
+	}else if(MG_IsTarget6()){
 		;キー操作を発生させる
 		Send, ^/
 	}else{
@@ -439,7 +429,7 @@ return
 MG_GetAction_RB_R_:
 	if(MG_IsTarget2()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget7()){
+	}else if(MG_IsTarget6()){
 		MG_ActionStr := "キー操作を発生させる"
 	}else{
 		MG_ActionStr := ""
@@ -452,7 +442,7 @@ MG_Gesture_RB_L_:
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^u
-	}else if(MG_IsTarget7()){
+	}else if(MG_IsTarget6()){
 		;キー操作を発生させる
 		Send, ^/
 	}else{
@@ -463,7 +453,7 @@ return
 MG_GetAction_RB_L_:
 	if(MG_IsTarget2()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget7()){
+	}else if(MG_IsTarget6()){
 		MG_ActionStr := "キー操作を発生させる"
 	}else{
 		MG_ActionStr := ""
@@ -541,7 +531,7 @@ MG_GetAction_RB_WU_:
 return
 
 MG_Gesture_X1B__:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		if(MG_Hold()){
 		if(MG_Hold()<500){
 		;短クリック時の動作 
@@ -556,7 +546,7 @@ MG_Gesture_X1B__:
 return
 
 MG_GetAction_X1B__:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		MG_ActionStr := "if(MG_Hold()){"
 	}else{
 		MG_ActionStr := ""
@@ -565,17 +555,6 @@ return
 
 MG_Gesture_X1B_:
 	if(MG_IsTarget5()){
-		if(!MG_Hold()){
-		 ;押したときの動作
-		;Send, {Control Down}
-		Send, {Shift Down}
-		;MG_Abort()
-		 }else{
-		  ;放したときの動作
-		;Send, {Control Up}
-		Send, {Shift Up}
-		  }
-	}else if(MG_IsTarget6()){
 		if(!MG_Timer(-500)){
 		;指定時間経過後に実行される動作
 		Send, ^x
@@ -588,8 +567,6 @@ return
 
 MG_GetAction_X1B_:
 	if(MG_IsTarget5()){
-		MG_ActionStr := "if(!MG_Hold()){"
-	}else if(MG_IsTarget6()){
 		MG_ActionStr := "if(!MG_Timer(-500)){"
 	}else{
 		MG_ActionStr := ""
@@ -597,7 +574,7 @@ MG_GetAction_X1B_:
 return
 
 MG_Gesture_X2B__:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		if(MG_Hold()){
 		if(MG_Hold()<500){
 		;短クリック時の動作 
@@ -612,7 +589,7 @@ MG_Gesture_X2B__:
 return
 
 MG_GetAction_X2B__:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		MG_ActionStr := "if(MG_Hold()){"
 	}else{
 		MG_ActionStr := ""
@@ -620,48 +597,20 @@ MG_GetAction_X2B__:
 return
 
 MG_Gesture_X2B_:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		if(!MG_Timer(-500)){
 		;指定時間経過後に実行される動作
 		Send, !c
 		MG_Abort()
 		}
-	}else if(MG_IsTarget5()){
-		if(!MG_Hold()){
-		 ;押したときの動作
-		Send, {Control Down}
-		Send, {Shift Down}
-		;MG_Abort()
-		 }else{
-		  ;放したときの動作
-		Send, {Control Up}
-		Send, {Shift Up}
-		  }
-	}else if(MG_IsTarget8()){
-		if(!MG_Hold()){
-		 ;押したときの動作
-		Send, {Control Down}
-		Send, {Shift Down}
-		;MG_Send("LB", "D")
-		;MG_Abort()
-		 }else{
-		  ;放したときの動作
-		Send, {Control Up}
-		Send, {Shift Up}
-		;MG_Send("LB", "U")
-		  }
 	}else{
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_X2B_:
-	if(MG_IsTarget6()){
+	if(MG_IsTarget5()){
 		MG_ActionStr := "if(!MG_Timer(-500)){"
-	}else if(MG_IsTarget5()){
-		MG_ActionStr := "if(!MG_Hold()){"
-	}else if(MG_IsTarget8()){
-		MG_ActionStr := "if(!MG_Hold()){"
 	}else{
 		MG_ActionStr := ""
 	}
@@ -672,11 +621,7 @@ MG_Gesture_X1B_RB_:
 MG_Gesture_X2B_LB_:
 MG_Gesture_RB_X1B_:
 MG_Gesture_RB_X2B_:
-	if(MG_IsTarget5()){
-		MG_Abort()
-	}else{
-		MG_Cancel()
-	}
+	
 return
 
 MG_GetAction_X2B_RB_:
@@ -684,31 +629,15 @@ MG_GetAction_X1B_RB_:
 MG_GetAction_X2B_LB_:
 MG_GetAction_RB_X1B_:
 MG_GetAction_RB_X2B_:
-	if(MG_IsTarget5()){
-		MG_ActionStr := "MG_Abort()"
-	}else{
-		MG_ActionStr := ""
-	}
+	
 return
 
 MG_Gesture_X1B_LB_:
-	if(MG_IsTarget5()){
-		Send, {Shift Up}
-		;キー操作を発生させる
-		Send, !{LButton}
-		Send, {Shift Down}
-		;MG_Abort()
-	}else{
-		MG_Cancel()
-	}
+	
 return
 
 MG_GetAction_X1B_LB_:
-	if(MG_IsTarget5()){
-		MG_ActionStr := "Send, {Shift Up}"
-	}else{
-		MG_ActionStr := ""
-	}
+	
 return
 
 
