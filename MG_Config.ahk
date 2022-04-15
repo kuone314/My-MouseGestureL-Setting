@@ -310,6 +310,9 @@ MG_Gesture_RB_UD_:
 	if(MG_IsTarget2()){
 		;キー操作を発生させる
 		Send, {F5}
+	}else if(MG_IsTarget4()){
+		;キー操作を発生させる
+		Send, {F5}
 	}else{
 		MG_Cancel()
 	}
@@ -317,6 +320,8 @@ return
 
 MG_GetAction_RB_UD_:
 	if(MG_IsTarget2()){
+		MG_ActionStr := "キー操作を発生させる"
+	}else if(MG_IsTarget4()){
 		MG_ActionStr := "キー操作を発生させる"
 	}else{
 		MG_ActionStr := ""
