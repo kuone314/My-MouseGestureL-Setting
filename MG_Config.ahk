@@ -254,7 +254,7 @@ MG_IsDisable(){
 
 MG_IsTarget1(){
 	global
-	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer") || (MG_IsTarget6()))
+	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer"))
 }
 
 MG_IsTarget2(){
@@ -264,22 +264,7 @@ MG_IsTarget2(){
 
 MG_IsTarget3(){
 	global
-	return (!(MG_IsTarget1()))
-}
-
-MG_IsTarget4(){
-	global
-	return ((MG_WClass="Notepad"))
-}
-
-MG_IsTarget5(){
-	global
 	return ((MG_WClass="PX_WINDOW_CLASS"))
-}
-
-MG_IsTarget6(){
-	global
-	return ((MG_WClass="Chrome_WidgetWin_1"))
 }
 
 MG_Gesture_RB_D_:
@@ -358,19 +343,11 @@ MG_GetAction_RB_U_:
 return
 
 MG_Gesture_RB_:
-	if(MG_IsTarget3()){
-		MG_Abort()
-	}else{
-		MG_Cancel()
-	}
+	
 return
 
 MG_GetAction_RB_:
-	if(MG_IsTarget3()){
-		MG_ActionStr := "MG_Abort()"
-	}else{
-		MG_ActionStr := ""
-	}
+	
 return
 
 MG_Gesture_RB_R_:
@@ -381,10 +358,8 @@ MG_Gesture_RB_R_:
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^c
-	}else if(MG_IsTarget5()){
+	}else if(MG_IsTarget3()){
 		;キー操作を発生させる
-		Send, ^/
-	}else if(MG_IsTarget6()){
 		Send, ^/
 	}else{
 		MG_Cancel()
@@ -394,10 +369,8 @@ return
 MG_GetAction_RB_R_:
 	if(MG_IsTarget2()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget5()){
+	}else if(MG_IsTarget3()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget6()){
-		MG_ActionStr := "Send, ^/"
 	}else{
 		MG_ActionStr := ""
 	}
@@ -409,10 +382,8 @@ MG_Gesture_RB_L_:
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^u
-	}else if(MG_IsTarget5()){
+	}else if(MG_IsTarget3()){
 		;キー操作を発生させる
-		Send, ^/
-	}else if(MG_IsTarget6()){
 		Send, ^/
 	}else{
 		MG_Cancel()
@@ -422,10 +393,8 @@ return
 MG_GetAction_RB_L_:
 	if(MG_IsTarget2()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget5()){
+	}else if(MG_IsTarget3()){
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget6()){
-		MG_ActionStr := "Send, ^/"
 	}else{
 		MG_ActionStr := ""
 	}
@@ -517,18 +486,16 @@ MG_GetAction_X1B__:
 return
 
 MG_Gesture_X1B_:
-	if(MG_Hold()){
-	if(MG_Hold()<500){
-	;短クリック時の動作 
-	Send, ^c
-	}else{
-	;長押し時の動作 
+	if(!MG_Timer(-500)){
+	;指定時間経過後に実行される動作
+	Send, ^x
+	MG_Abort()
 	}
-	}
+	
 return
 
 MG_GetAction_X1B_:
-	MG_ActionStr := "if(MG_Hold()){"
+	MG_ActionStr := "if(!MG_Timer(-500)){"
 return
 
 MG_Gesture_X2B__:
@@ -547,11 +514,15 @@ MG_GetAction_X2B__:
 return
 
 MG_Gesture_X2B_:
-	
+	if(!MG_Timer(-500)){
+	;指定時間経過後に実行される動作
+	Send, !c
+	MG_Abort()
+	}
 return
 
 MG_GetAction_X2B_:
-	
+	MG_ActionStr := "if(!MG_Timer(-500)){"
 return
 
 
