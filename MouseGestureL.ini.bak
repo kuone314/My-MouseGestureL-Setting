@@ -86,24 +86,13 @@ Include=VisualStudio
 WClass=WinMergeWindowClassW
 WClass=PX_WINDOW_CLASS
 WClass=Basilica Tracer
-Include=VSCode
 
 [VisualStudio]
 Title_B=- Microsoft Visual Studio
 Exe=devenv.exe
 
-[UnUseGesture]
-And=1
-Include_N=Text
-
-[NotePad]
-WClass=Notepad
-
 [Sublime]
 WClass=PX_WINDOW_CLASS
-
-[VSCode]
-WClass=Chrome_WidgetWin_1
 
 [Enter]
 G=RB_D_
@@ -124,19 +113,16 @@ Text=;キー操作を発生させる<MG_CR>Send, ^s
 
 [IgnoreStork]
 G=RB_
-UnUseGesture=MG_Abort()
 
 [CommentOut]
 G=RB_R_
 VisualStudio=;キー操作を発生させる<MG_CR>Send, +^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^c
 Sublime=;キー操作を発生させる<MG_CR>Send, ^/
-VSCode=Send, ^/
 
 [UnCommentOut]
 G=RB_L_
 VisualStudio=;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^u
 Sublime=;キー操作を発生させる<MG_CR>Send, ^/
-VSCode=Send, ^/
 
 [Format]
 G=RB_RL_
@@ -160,7 +146,7 @@ Default=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の動�
 
 [Cut]
 G=X1B_
-Default=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の動作 <MG_CR>Send, ^c<MG_CR>}else{<MG_CR>;長押し時の動作 <MG_CR>}<MG_CR>}
+Default=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, ^x<MG_CR>MG_Abort()<MG_CR>}<MG_CR>
 
 [Past]
 G=X2B__
@@ -168,3 +154,4 @@ Default=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の動�
 
 [CLCL]
 G=X2B_
+Default=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, !c<MG_CR>MG_Abort()<MG_CR>}
