@@ -291,7 +291,7 @@ MG_IsDisable(){
 
 MG_IsTarget1(){
 	global
-	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer"))
+	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer") || (MG_IsTarget7()))
 }
 
 MG_IsTarget2(){
@@ -317,6 +317,11 @@ MG_IsTarget5(){
 MG_IsTarget6(){
 	global
 	return ((MG_WClass="PX_WINDOW_CLASS"))
+}
+
+MG_IsTarget7(){
+	global
+	return ((MG_WClass="Chrome_WidgetWin_1"))
 }
 
 MG_Gesture_RB_D_:

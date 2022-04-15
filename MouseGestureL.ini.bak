@@ -98,25 +98,11 @@ Include_N=Text
 [NotePad]
 WClass=Notepad
 
-[spFrame]
-CClass=AX_VIEW_CLASS
-WClass=AxspGateClassName
-WClass=AxCAxSampleAplClassName
-WClass=AxspGaugeClassName
-WClass=AxspFrameClassName
-WClass=HwndWrapper[PRLSModeler.exe;;1a09815b-6362-49c3-a35c-57276c4e4bfa]
-WClass=AxspGate-ViewerClassName
-
 [Not_spFrame]
-Include_N=spFrame
 Title=CyclonJoker
 
 [Sublime]
 WClass=PX_WINDOW_CLASS
-
-[JT2Go]
-WClass=Afx:00400000:8:00010007:00000000:41451959
-Title_T=JT2Go
 
 [Enter]
 G=RB_D_
@@ -171,7 +157,6 @@ Not_spFrame=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の
 
 [Cut]
 G=X1B_
-spFrame=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>;Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>;Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>  }
 Not_spFrame=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, ^x<MG_CR>MG_Abort()<MG_CR>}
 
 [Past]
@@ -181,8 +166,6 @@ Not_spFrame=if(MG_Hold()){<MG_CR>if(MG_Hold()<500){<MG_CR>;短クリック時の
 [CLCL]
 G=X2B_
 Not_spFrame=if(!MG_Timer(-500)){<MG_CR>;指定時間経過後に実行される動作<MG_CR>Send, !c<MG_CR>MG_Abort()<MG_CR>}
-spFrame=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>  }
-JT2Go=if(!MG_Hold()){<MG_CR> ;押したときの動作<MG_CR>Send, {Control Down}<MG_CR>Send, {Shift Down}<MG_CR>MG_Send("LB", "D")<MG_CR>;MG_Abort()<MG_CR> }else{<MG_CR>  ;放したときの動作<MG_CR>Send, {Control Up}<MG_CR>Send, {Shift Up}<MG_CR>MG_Send("LB", "U")<MG_CR>  }
 
 [CancelShift]
 G=X2B_RB_
@@ -190,8 +173,6 @@ G=X1B_RB_
 G=X2B_LB_
 G=RB_X1B_
 G=RB_X2B_
-spFrame=MG_Abort()
 
 [SelCentor]
 G=X1B_LB_
-spFrame=Send, {Shift Up}<MG_CR>;キー操作を発生させる<MG_CR>Send, !{LButton}<MG_CR>Send, {Shift Down}<MG_CR>;MG_Abort()
