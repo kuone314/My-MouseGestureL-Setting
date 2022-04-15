@@ -272,6 +272,11 @@ MG_IsTarget4(){
 	return ((MG_Exe="Code.exe"))
 }
 
+MG_IsTarget5(){
+	global
+	return ((MG_Exe="vivaldi.exe"))
+}
+
 MG_Gesture_RB_D_:
 	if(MG_IsTarget1()){
 		;キー操作を発生させる
@@ -353,11 +358,19 @@ MG_GetAction_RB_U_:
 return
 
 MG_Gesture_RB_:
-	
+	if(MG_IsTarget5()){
+		MG_Abort()
+	}else{
+		MG_Cancel()
+	}
 return
 
 MG_GetAction_RB_:
-	
+	if(MG_IsTarget5()){
+		MG_ActionStr := "MG_Abort()"
+	}else{
+		MG_ActionStr := ""
+	}
 return
 
 MG_Gesture_RB_R_:
