@@ -384,6 +384,8 @@ MG_Gesture_RB_R_:
 	}else if(MG_IsTarget5()){
 		;キー操作を発生させる
 		Send, ^/
+	}else if(MG_IsTarget6()){
+		Send, ^/
 	}else{
 		MG_Cancel()
 	}
@@ -394,6 +396,8 @@ MG_GetAction_RB_R_:
 		MG_ActionStr := "キー操作を発生させる"
 	}else if(MG_IsTarget5()){
 		MG_ActionStr := "キー操作を発生させる"
+	}else if(MG_IsTarget6()){
+		MG_ActionStr := "Send, ^/"
 	}else{
 		MG_ActionStr := ""
 	}
@@ -408,6 +412,8 @@ MG_Gesture_RB_L_:
 	}else if(MG_IsTarget5()){
 		;キー操作を発生させる
 		Send, ^/
+	}else if(MG_IsTarget6()){
+		Send, ^/
 	}else{
 		MG_Cancel()
 	}
@@ -418,6 +424,8 @@ MG_GetAction_RB_L_:
 		MG_ActionStr := "キー操作を発生させる"
 	}else if(MG_IsTarget5()){
 		MG_ActionStr := "キー操作を発生させる"
+	}else if(MG_IsTarget6()){
+		MG_ActionStr := "Send, ^/"
 	}else{
 		MG_ActionStr := ""
 	}
