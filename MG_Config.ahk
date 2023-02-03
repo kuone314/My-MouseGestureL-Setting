@@ -358,6 +358,9 @@ MG_Gesture_RB_UD_:
 	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, {F5}
+	} else if (MG_IsTarget6()) {
+		;キー操作を発生させる
+		Send, {F5}
 	} else {
 		MG_Cancel()
 	}
@@ -367,6 +370,8 @@ MG_GetAction_RB_UD_:
 	if (MG_IsTarget2()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else if (MG_IsTarget4()) {
+		MG_ActionStr := "キー操作を発生させる"
+	} else if (MG_IsTarget6()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else {
 		MG_ActionStr := ""
@@ -427,6 +432,9 @@ MG_Gesture_RB_R_:
 	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, ^/
+	} else if (MG_IsTarget6()) {
+		;キー操作を発生させる
+		Send, ^/
 	} else {
 		MG_Cancel()
 	}
@@ -438,6 +446,8 @@ MG_GetAction_RB_R_:
 	} else if (MG_IsTarget3()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else if (MG_IsTarget4()) {
+		MG_ActionStr := "キー操作を発生させる"
+	} else if (MG_IsTarget6()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else {
 		MG_ActionStr := ""
@@ -456,6 +466,9 @@ MG_Gesture_RB_L_:
 	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, ^/
+	} else if (MG_IsTarget6()) {
+		;キー操作を発生させる
+		Send, ^/
 	} else {
 		MG_Cancel()
 	}
@@ -467,6 +480,8 @@ MG_GetAction_RB_L_:
 	} else if (MG_IsTarget3()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else if (MG_IsTarget4()) {
+		MG_ActionStr := "キー操作を発生させる"
+	} else if (MG_IsTarget6()) {
 		MG_ActionStr := "キー操作を発生させる"
 	} else {
 		MG_ActionStr := ""
@@ -618,7 +633,7 @@ return
 MG_IsHookEnabled_RB() {
 	global
 	MG_TriggerCount ? : MG_GetMousePosInfo()
-	return (MG_RB_Enabled && (MG_TriggerCount || (!MG_IsDisable() && (MG_IsTarget1() || MG_IsTarget2() || MG_IsTarget4() || MG_IsTarget5() || MG_IsTarget3()))))
+	return (MG_RB_Enabled && (MG_TriggerCount || (!MG_IsDisable() && (MG_IsTarget1() || MG_IsTarget2() || MG_IsTarget4() || MG_IsTarget6() || MG_IsTarget5() || MG_IsTarget3()))))
 }
 
 MG_IsHookEnabled_X1B() {
