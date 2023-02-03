@@ -285,7 +285,7 @@ MG_IsDisable() {
 
 MG_IsTarget1() {
 	global
-	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer") || (MG_IsTarget4()))
+	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer") || (MG_IsTarget4()) || (MG_IsTarget6()))
 }
 
 MG_IsTarget2() {
@@ -306,6 +306,11 @@ MG_IsTarget4() {
 MG_IsTarget5() {
 	global
 	return ((MG_Exe="vivaldi.exe"))
+}
+
+MG_IsTarget6() {
+	global
+	return ((MG_WClass="SunAwtFrame"))
 }
 
 MG_IsExDefault() {
