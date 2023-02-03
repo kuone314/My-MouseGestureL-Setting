@@ -1,7 +1,9 @@
-﻿MG_IniFileVersion=1.31
+﻿MG_IniFileVersion=1.40
 MG_8Dir=0
 MG_ActiveAsTarget=0
 MG_Interval=20
+MG_AlwaysHook=0
+MG_PrvntCtxtMenu=0
 MG_Threshold=30
 MG_LongThresholdX=800
 MG_LongThresholdY=600
@@ -9,6 +11,7 @@ MG_LongThreshold=700
 MG_TimeoutThreshold=12
 MG_Timeout=400
 MG_DGInterval=100
+MG_TmReleaseTrigger=3
 MG_ORangeDefault=3
 MG_ORangeA=3
 MG_ORangeB=3
@@ -66,30 +69,38 @@ MG_LogBG=000000
 MG_LogTranspcy=100
 MG_LogFontSize=10
 MG_LogFont=MS UI Gothic
+MG_EditCommand=
 MG_HotkeyEnable=
 MG_HotkeyNavi=
+MG_HotkeyReload=
 MG_ScriptEditor=
 MG_TraySubmenu=0
 MG_AdjustDlg=0
 MG_DlgHeightLimit=800
-MG_EditCommand=
 MG_FoldTarget=0
+MG_DisableWarning=0
+MG_ActvtExclud := []
 MG_MaxLength=6
 MG_Triggers=RB_X1B_X2B
 MG_SubTriggers=WU_WD
 
 
-Goto,MG_RB_End
+Goto, MG_RB_End
 
 MG_RB_Enable:
-	Hotkey,*RButton,MG_RB_DownHotkey,On
-	Hotkey,*RButton up,MG_RB_UpHotkey,On
+	if (!MG_AlwaysHook) {
+		MG_RB_HookEnabled := Func("MG_IsHookEnabled_RB")
+		Hotkey, If, % MG_RB_HookEnabled
+	}
+	Hotkey, *RButton, MG_RB_DownHotkey, On
+	Hotkey, *RButton up, MG_RB_UpHotkey, On
+	Hotkey, If
 	MG_RB_Enabled := 1
 return
 
 MG_RB_Disable:
-	Hotkey,*RButton,MG_RB_DownHotkey,Off
-	Hotkey,*RButton up,MG_RB_UpHotkey,Off
+	Hotkey, *RButton, MG_RB_DownHotkey, Off
+	Hotkey, *RButton up, MG_RB_UpHotkey, Off
 	MG_RB_Enabled := 0
 return
 
@@ -116,17 +127,22 @@ return
 MG_RB_End:
 
 
-Goto,MG_X1B_End
+Goto, MG_X1B_End
 
 MG_X1B_Enable:
-	Hotkey,*XButton1,MG_X1B_DownHotkey,On
-	Hotkey,*XButton1 up,MG_X1B_UpHotkey,On
+	if (!MG_AlwaysHook) {
+		MG_X1B_HookEnabled := Func("MG_IsHookEnabled_X1B")
+		Hotkey, If, % MG_X1B_HookEnabled
+	}
+	Hotkey, *XButton1, MG_X1B_DownHotkey, On
+	Hotkey, *XButton1 up, MG_X1B_UpHotkey, On
+	Hotkey, If
 	MG_X1B_Enabled := 1
 return
 
 MG_X1B_Disable:
-	Hotkey,*XButton1,MG_X1B_DownHotkey,Off
-	Hotkey,*XButton1 up,MG_X1B_UpHotkey,Off
+	Hotkey, *XButton1, MG_X1B_DownHotkey, Off
+	Hotkey, *XButton1 up, MG_X1B_UpHotkey, Off
 	MG_X1B_Enabled := 0
 return
 
@@ -157,17 +173,22 @@ return
 MG_X1B_End:
 
 
-Goto,MG_X2B_End
+Goto, MG_X2B_End
 
 MG_X2B_Enable:
-	Hotkey,*XButton2,MG_X2B_DownHotkey,On
-	Hotkey,*XButton2 up,MG_X2B_UpHotkey,On
+	if (!MG_AlwaysHook) {
+		MG_X2B_HookEnabled := Func("MG_IsHookEnabled_X2B")
+		Hotkey, If, % MG_X2B_HookEnabled
+	}
+	Hotkey, *XButton2, MG_X2B_DownHotkey, On
+	Hotkey, *XButton2 up, MG_X2B_UpHotkey, On
+	Hotkey, If
 	MG_X2B_Enabled := 1
 return
 
 MG_X2B_Disable:
-	Hotkey,*XButton2,MG_X2B_DownHotkey,Off
-	Hotkey,*XButton2 up,MG_X2B_UpHotkey,Off
+	Hotkey, *XButton2, MG_X2B_DownHotkey, Off
+	Hotkey, *XButton2 up, MG_X2B_UpHotkey, Off
 	MG_X2B_Enabled := 0
 return
 
@@ -198,15 +219,20 @@ return
 MG_X2B_End:
 
 
-Goto,MG_WU_End
+Goto, MG_WU_End
 
 MG_WU_Enable:
-	Hotkey,*WheelUp,MG_WU_Hotkey,On
+	if (!MG_AlwaysHook) {
+		MG_WU_HookEnabled := Func("MG_IsHookEnabled_WU")
+		Hotkey, If, % MG_WU_HookEnabled
+	}
+	Hotkey, *WheelUp, MG_WU_Hotkey, On
+	Hotkey, If
 	MG_WU_Enabled := 1
 return
 
 MG_WU_Disable:
-	Hotkey,*WheelUp,MG_WU_Hotkey,Off
+	Hotkey, *WheelUp, MG_WU_Hotkey, Off
 	MG_WU_Enabled := 0
 return
 
@@ -221,15 +247,20 @@ return
 MG_WU_End:
 
 
-Goto,MG_WD_End
+Goto, MG_WD_End
 
 MG_WD_Enable:
-	Hotkey,*WheelDown,MG_WD_Hotkey,On
+	if (!MG_AlwaysHook) {
+		MG_WD_HookEnabled := Func("MG_IsHookEnabled_WD")
+		Hotkey, If, % MG_WD_HookEnabled
+	}
+	Hotkey, *WheelDown, MG_WD_Hotkey, On
+	Hotkey, If
 	MG_WD_Enabled := 1
 return
 
 MG_WD_Disable:
-	Hotkey,*WheelDown,MG_WD_Hotkey,Off
+	Hotkey, *WheelDown, MG_WD_Hotkey, Off
 	MG_WD_Enabled := 0
 return
 
@@ -244,319 +275,369 @@ return
 MG_WD_End:
 
 
-Goto,MG_Config_End
+Goto, MG_Config_End
 
 
-MG_IsDisable(){
+MG_IsDisable() {
 	global
 	return ((MG_WClass="Dialog"))
 }
 
-MG_IsTarget1(){
+MG_IsTarget1() {
 	global
 	return ((MG_WClass="TextEditorWindow") || (MG_IsTarget2()) || (MG_WClass="WinMergeWindowClassW") || (MG_WClass="PX_WINDOW_CLASS") || (MG_WClass="Basilica Tracer") || (MG_IsTarget4()))
 }
 
-MG_IsTarget2(){
+MG_IsTarget2() {
 	global
 	return ((MG_StrComp(MG_Title, "- Microsoft Visual Studio", 4)) || (MG_Exe="devenv.exe"))
 }
 
-MG_IsTarget3(){
+MG_IsTarget3() {
 	global
 	return ((MG_WClass="PX_WINDOW_CLASS"))
 }
 
-MG_IsTarget4(){
+MG_IsTarget4() {
 	global
 	return ((MG_Exe="Code.exe"))
 }
 
-MG_IsTarget5(){
+MG_IsTarget5() {
 	global
 	return ((MG_Exe="vivaldi.exe"))
 }
 
+MG_IsExDefault() {
+	return (0)
+}
+
 MG_Gesture_RB_D_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, {Enter}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_D_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_LD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, {Backspace}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_LD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_UD_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		;キー操作を発生させる
 		Send, {F5}
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, {F5}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_UD_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_U_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		;キー操作を発生させる
 		Send, {F6}
 			;キー操作を発生させる
 		Send, ^{F7}
-	}else if(MG_IsTarget1()){
+	} else if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, ^s
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_U_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget1()){
+	} else if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_:
-	if(MG_IsTarget5()){
+	if (MG_IsTarget5()) {
 		MG_Abort()
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_:
-	if(MG_IsTarget5()){
+	if (MG_IsTarget5()) {
 		MG_ActionStr := "MG_Abort()"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_R_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		;キー操作を発生させる
 		Send, +^k
 		;キー操作を発生させる
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^c
-	}else if(MG_IsTarget3()){
+	} else if (MG_IsTarget3()) {
 		;キー操作を発生させる
 		Send, ^/
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, ^/
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_R_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget3()){
+	} else if (MG_IsTarget3()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_L_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		;キー操作を発生させる
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^u
-	}else if(MG_IsTarget3()){
+	} else if (MG_IsTarget3()) {
 		;キー操作を発生させる
 		Send, ^/
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		;キー操作を発生させる
 		Send, ^/
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_L_:
-	if(MG_IsTarget2()){
+	if (MG_IsTarget2()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget3()){
+	} else if (MG_IsTarget3()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else if(MG_IsTarget4()){
+	} else if (MG_IsTarget4()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_RL_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, ^k
 		;キー操作を発生させる
 		Send, ^f
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_RL_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_RD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, {Delete}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_RD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_WD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, ^{F3}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_WD_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_RB_WU_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		;キー操作を発生させる
 		Send, +^{F3}
-	}else{
+	} else {
 		MG_Cancel()
 	}
 return
 
 MG_GetAction_RB_WU_:
-	if(MG_IsTarget1()){
+	if (MG_IsTarget1()) {
 		MG_ActionStr := "キー操作を発生させる"
-	}else{
+	} else {
 		MG_ActionStr := ""
 	}
 return
 
 MG_Gesture_X1B__:
-	if(MG_Hold()){
-	if(MG_Hold()<500){
-	;短クリック時の動作 
-	Send, ^c
-	}else{
-	;長押し時の動作 
-	}
+	if (!MG_IsExDefault()) {
+		if(MG_Hold()){
+		if(MG_Hold()<500){
+		;短クリック時の動作 
+		Send, ^c
+		}else{
+		;長押し時の動作 
+		}
+		}
 	}
 return
 
 MG_GetAction_X1B__:
-	MG_ActionStr := "if(MG_Hold()){"
+	if (!MG_IsExDefault()) {
+		MG_ActionStr := "if(MG_Hold()){"
+	}
 return
 
 MG_Gesture_X1B_:
-	if(!MG_Timer(-500)){
-	;指定時間経過後に実行される動作
-	Send, ^x
-	MG_Abort()
+	if (!MG_IsExDefault()) {
+		if(!MG_Timer(-500)){
+		;指定時間経過後に実行される動作
+		Send, ^x
+		MG_Abort()
+		}
+		
 	}
-	
 return
 
 MG_GetAction_X1B_:
-	MG_ActionStr := "if(!MG_Timer(-500)){"
+	if (!MG_IsExDefault()) {
+		MG_ActionStr := "if(!MG_Timer(-500)){"
+	}
 return
 
 MG_Gesture_X2B__:
-	if(MG_Hold()){
-	if(MG_Hold()<500){
-	;短クリック時の動作 
-	Send, ^v
-	}else{
-	;長押し時の動作 
-	}
+	if (!MG_IsExDefault()) {
+		if(MG_Hold()){
+		if(MG_Hold()<500){
+		;短クリック時の動作 
+		Send, ^v
+		}else{
+		;長押し時の動作 
+		}
+		}
 	}
 return
 
 MG_GetAction_X2B__:
-	MG_ActionStr := "if(MG_Hold()){"
+	if (!MG_IsExDefault()) {
+		MG_ActionStr := "if(MG_Hold()){"
+	}
 return
 
 MG_Gesture_X2B_:
-	if(!MG_Timer(-500)){
-	;指定時間経過後に実行される動作
-	Send, !c
-	MG_Abort()
+	if (!MG_IsExDefault()) {
+		if(!MG_Timer(-500)){
+		;指定時間経過後に実行される動作
+		Send, !c
+		MG_Abort()
+		}
 	}
 return
 
 MG_GetAction_X2B_:
-	MG_ActionStr := "if(!MG_Timer(-500)){"
+	if (!MG_IsExDefault()) {
+		MG_ActionStr := "if(!MG_Timer(-500)){"
+	}
 return
+
+
+MG_IsHookEnabled_RB() {
+	global
+	MG_TriggerCount ? : MG_GetMousePosInfo()
+	return (MG_RB_Enabled && (MG_TriggerCount || (!MG_IsDisable() && (MG_IsTarget1() || MG_IsTarget2() || MG_IsTarget4() || MG_IsTarget5() || MG_IsTarget3()))))
+}
+
+MG_IsHookEnabled_X1B() {
+	global
+	MG_TriggerCount ? : MG_GetMousePosInfo()
+	return (MG_X1B_Enabled && (MG_TriggerCount || (!MG_IsDisable())))
+}
+
+MG_IsHookEnabled_X2B() {
+	global
+	MG_TriggerCount ? : MG_GetMousePosInfo()
+	return (MG_X2B_Enabled && (MG_TriggerCount || (!MG_IsDisable())))
+}
+
+MG_IsHookEnabled_WU() {
+	global
+	return (MG_WU_Enabled && MG_TriggerCount)
+}
+
+MG_IsHookEnabled_WD() {
+	global
+	return (MG_WD_Enabled && MG_TriggerCount)
+}
+
 
 
 MG_Config_end:
