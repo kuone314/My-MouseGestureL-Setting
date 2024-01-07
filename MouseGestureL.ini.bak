@@ -104,7 +104,6 @@ Exe=vivaldi.exe
 [Enter]
 G=RB_D_
 Text=;キー操作を発生させる<MG_CR>Send, {Enter}
-NoJesture=MG_Abort()
 
 [BS]
 G=RB_LD_
@@ -122,10 +121,11 @@ Text=;キー操作を発生させる<MG_CR>Send, ^s
 
 [IgnoreStork]
 G=RB_
+NoJesture=MG_Abort()
 
 [CommentOut]
 G=RB_R_
-VisualStudio=;キー操作を発生させる<MG_CR>Send, +^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^c
+VisualStudio=;キー操作を発生させる<MG_CR>Send, ^k<MG_CR>;キー操作を発生させる<MG_CR>Send, ^c
 Sublime=;キー操作を発生させる<MG_CR>Send, ^/
 VSCode=;キー操作を発生させる<MG_CR>Send, ^/
 

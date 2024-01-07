@@ -274,7 +274,7 @@ MG_IsTarget4(){
 
 MG_IsTarget5(){
 	global
-	return ((MG_Exe="vivaldi.exe"))
+	return ((MG_Exe="vivaldi.exe") || (MG_Exe="firefox.exe"))
 }
 
 MG_Gesture_RB_D_:
@@ -375,8 +375,6 @@ return
 
 MG_Gesture_RB_R_:
 	if(MG_IsTarget2()){
-		;キー操作を発生させる
-		Send, +^k
 		;キー操作を発生させる
 		Send, ^k
 		;キー操作を発生させる
